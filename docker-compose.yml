@@ -2,12 +2,13 @@ version: "3.8"
 
 services:
   monitor-ui:
-    build: .
+    build:
+      context: https://github.com/abhilashmaddineni/docker-monitor-ui.git
     container_name: docker-monitor-ui
     ports:
       - "9090:9090"
     volumes:
       - /var/log/container-monitor.log:/logs/container-monitor.log:ro
       - /var/log/docker_cleanup.log:/logs/docker_cleanup.log:ro
-      - /var/run/docker.sock:/var/run/docker.sock  # required to get Docker info
+      - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
