@@ -2,15 +2,9 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-COPY app.py .
-COPY templates templates
 COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN pip install -r requirements.txt
+COPY . .
 
-# Log files will be mounted from host
-VOLUME /logs
-
-EXPOSE 9090
-
-CMD ["python", "app.py"]
+CMD ["python3", "app.py"]
